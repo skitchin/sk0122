@@ -15,7 +15,6 @@ public class ApplicationTest {
     @Test
     void testCheckout1() {
         Agreement agreement = checkout.checkout("JAKR", 5, 101, LocalDate.of(2015, 9, 3));
-        agreement.printAgreement();
         Assertions.assertEquals(2, agreement.getChargeDays());
         Assertions.assertEquals(5.98, agreement.getPreDiscountCharge(), 0.01);
         Assertions.assertEquals(0.00, agreement.getDiscountAmount(), 0.01);
@@ -25,7 +24,6 @@ public class ApplicationTest {
     @Test
     void testCheckout2() {
         Agreement agreement = checkout.checkout("LADW", 3, 10, LocalDate.of(2020, 7, 2));
-        agreement.printAgreement();
         Assertions.assertEquals(1, agreement.getChargeDays()); // Adjusted expected charge days to 1
         Assertions.assertEquals(1.99, agreement.getPreDiscountCharge(), 0.01);
         Assertions.assertEquals(0.20, agreement.getDiscountAmount(), 0.01);
@@ -35,7 +33,6 @@ public class ApplicationTest {
     @Test
     void testCheckout3() {
         Agreement agreement = checkout.checkout("CHNS", 5, 25, LocalDate.of(2015, 7, 2));
-        agreement.printAgreement();
         Assertions.assertEquals(3, agreement.getChargeDays());
         Assertions.assertEquals(4.47, agreement.getPreDiscountCharge(), 0.01);
         Assertions.assertEquals(1.12, agreement.getDiscountAmount(), 0.01);
@@ -45,7 +42,6 @@ public class ApplicationTest {
     @Test
     void testCheckout4() {
         Agreement agreement = checkout.checkout("JAKD", 6, 0, LocalDate.of(2015, 9, 3));
-        agreement.printAgreement();
         Assertions.assertEquals(3, agreement.getChargeDays());
         Assertions.assertEquals(8.97, agreement.getPreDiscountCharge(), 0.01);
         Assertions.assertEquals(0.00, agreement.getDiscountAmount(), 0.01);
@@ -55,7 +51,6 @@ public class ApplicationTest {
     @Test
     void testCheckout5() {
         Agreement agreement = checkout.checkout("JAKR", 9, 0, LocalDate.of(2015, 7, 2));
-        agreement.printAgreement();
         Assertions.assertEquals(5, agreement.getChargeDays());
         Assertions.assertEquals(14.95, agreement.getPreDiscountCharge(), 0.01);
         Assertions.assertEquals(0.00, agreement.getDiscountAmount(), 0.01);
@@ -65,7 +60,6 @@ public class ApplicationTest {
     @Test
     void testCheckout6() {
         Agreement agreement = checkout.checkout("JAKR", 4, 50, LocalDate.of(2020, 7, 2));
-        agreement.printAgreement();
         Assertions.assertEquals(1, agreement.getChargeDays());
         Assertions.assertEquals(2.99, agreement.getPreDiscountCharge(), 0.01);
         Assertions.assertEquals(1.50, agreement.getDiscountAmount(), 0.01);
