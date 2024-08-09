@@ -31,15 +31,8 @@ public class Application {
     @Bean
     public CommandLineRunner demo(Checkout checkout) {
         return args -> {
-            // Define an array of tool rental specifications
-            Object[][] rentals = {
-                    {"JAKR", 5, 101, LocalDate.of(2015, 9, 3)},
-                    {"LADW", 3, 10, LocalDate.of(2020, 7, 2)},
-                    {"CHNS", 5, 25, LocalDate.of(2015, 7, 2)},
-                    {"JAKD", 6, 0, LocalDate.of(2015, 9, 3)},
-                    {"JAKR", 9, 0, LocalDate.of(2015, 7, 2)},
-                    {"JAKR", 4, 50, LocalDate.of(2020, 7, 2)}
-            };
+            // Use the shared rental data
+            Object[][] rentals = Data.getData();
 
             // Process each rental specification
             for (Object[] rental : rentals) {
