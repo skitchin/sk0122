@@ -17,7 +17,7 @@ public class Checkout {
 
     static {
         tools.put("CHNS", new Tool("CHNS", "Chainsaw", "Stihl", 1.49, true, false, true));
-        tools.put("LADW", new Tool("LADW", "Ladder", "Werner", 1.99, true, true, false)); // Updated to not charge on holidays
+        tools.put("LADW", new Tool("LADW", "Ladder", "Werner", 1.99, true, true, false));
         tools.put("JAKD", new Tool("JAKD", "Jackhammer", "DeWalt", 2.99, true, false, false));
         tools.put("JAKR", new Tool("JAKR", "Jackhammer", "Ridgid", 2.99, true, false, false));
     }
@@ -65,16 +65,16 @@ public class Checkout {
 
         // Prioritize holiday checking for tools that don't charge on holidays
         if (isHoliday && !tool.isHolidayCharge()) {
-            return false;  // Do not charge if it's a holiday and the tool does not charge on holidays
+            return false;
         }
 
         // If not a holiday or the tool charges on holidays, check if it's a weekend
         if ((date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY)) {
-            return tool.isWeekendCharge(); // Charge based on the tool's weekend setting
+            return tool.isWeekendCharge();
         }
 
         // Default to weekday charging
-        return tool.isWeekdayCharge(); // Charge based on the tool's weekday setting
+        return tool.isWeekdayCharge();
     }
 
 
@@ -91,7 +91,7 @@ public class Checkout {
 
         // Labor Day - first Monday in September
         if (date.getMonth() == Month.SEPTEMBER && date.getDayOfWeek() == DayOfWeek.MONDAY && date.getDayOfMonth() <= 7) {
-            return true; // Labor Day
+            return true;
         }
 
         return false;
