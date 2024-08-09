@@ -2,7 +2,7 @@ package com.kitchin.sk0122;
 
 import java.time.LocalDate;
 
-public class Data {
+public class RentalData {
 
     /**
      * Retrieves an array of rental data. Each element in the array is an object array containing:
@@ -14,7 +14,7 @@ public class Data {
      *
      * @return a 2D array of rental data.
      */
-    public static Object[][] getData() {
+    public static Object[][] getRentals() {
         return new Object[][]{
                 {"JAKR", 5, 101, LocalDate.of(2015, 9, 3)},
                 {"LADW", 3, 10, LocalDate.of(2020, 7, 2)},

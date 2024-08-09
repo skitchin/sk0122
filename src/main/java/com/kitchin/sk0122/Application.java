@@ -32,7 +32,7 @@ public class Application {
     public CommandLineRunner demo(Checkout checkout) {
         return args -> {
             // Use the shared rental data
-            Object[][] rentals = Data.getData();
+            Object[][] rentals = RentalData.getRentals();
 
             // Process each rental specification
             for (Object[] rental : rentals) {

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,15 +11,6 @@ import java.util.Map;
  */
 @Service
 public class Checkout {
-
-    private static final Map<String, Tool> tools = new HashMap<>();
-
-    static {
-        tools.put("CHNS", new Tool("CHNS", "Chainsaw", "Stihl", 1.49, true, false, true));
-        tools.put("LADW", new Tool("LADW", "Ladder", "Werner", 1.99, true, true, false));
-        tools.put("JAKD", new Tool("JAKD", "Jackhammer", "DeWalt", 2.99, true, false, false));
-        tools.put("JAKR", new Tool("JAKR", "Jackhammer", "Ridgid", 2.99, true, false, false));
-    }
 
     /**
      * Processes a checkout for a tool rental.
@@ -33,13 +23,21 @@ public class Checkout {
      */
     public Agreement checkout(String toolCode, int rentalDays, int discountPercent, LocalDate checkoutDate) {
         if (rentalDays < 1) {
-            throw new IllegalArgumentException("Rental day count must be 1 or greater.");
+            throw new IllegalArgumentException("Rental day count must be 1 or greater.\n");
         }
         if (discountPercent < 0 || discountPercent > 100) {
-            throw new IllegalArgumentException("Discount percent must be between 0 and 100.");
+            throw new IllegalArgumentException("Discount percent must be between 0 and 100.\n");
         }
 
-        Tool tool = tools.get(toolCode);
+        // Retrieve the tools map from the Data class
+        Map<String, Object> tools = ToolsData.getTools();
+
+        // Cast the object to a Tool
+        Tools tool = (Tools) tools.get(toolCode);
+        if (tool == null) {
+            throw new IllegalArgumentException("Invalid tool code: " + toolCode);
+        }
+
         LocalDate dueDate = checkoutDate.plusDays(rentalDays);
         int chargeDays = calculateChargeDays(tool, checkoutDate.plusDays(1), dueDate);
         var preDiscountCharge = chargeDays * tool.getDailyCharge();
@@ -50,7 +48,7 @@ public class Checkout {
                 tool.getDailyCharge(), chargeDays, preDiscountCharge, discountPercent, discountAmount, finalCharge);
     }
 
-    private int calculateChargeDays(Tool tool, LocalDate startDate, LocalDate endDate) {
+    private int calculateChargeDays(Tools tool, LocalDate startDate, LocalDate endDate) {
         int chargeDays = 0;
         for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
             if (isChargeableDay(tool, date)) {
@@ -60,7 +58,7 @@ public class Checkout {
         return chargeDays;
     }
 
-    private boolean isChargeableDay(Tool tool, LocalDate date) {
+    private boolean isChargeableDay(Tools tool, LocalDate date) {
         boolean isHoliday = isHoliday(date);
 
         // Prioritize holiday checking for tools that don't charge on holidays
@@ -76,7 +74,6 @@ public class Checkout {
         // Default to weekday charging
         return tool.isWeekdayCharge();
     }
-
 
     private boolean isHoliday(LocalDate date) {
         if (date.getMonthValue() == 7) {

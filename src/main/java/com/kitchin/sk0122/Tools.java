@@ -3,7 +3,7 @@ package com.kitchin.sk0122;
 /**
  * Represents a tool available for rent.
  */
-public class Tool {
+public class Tools {
     private String code;
     private String type;
     private String brand;
@@ -23,7 +23,7 @@ public class Tool {
      * @param weekendCharge Flag indicating if charges apply on weekends.
      * @param holidayCharge Flag indicating if charges apply on holidays.
      */
-    public Tool(String code, String type, String brand, double dailyCharge, boolean weekdayCharge, boolean weekendCharge, boolean holidayCharge) {
+    public Tools(String code, String type, String brand, double dailyCharge, boolean weekdayCharge, boolean weekendCharge, boolean holidayCharge) {
         this.code = code;
         this.type = type;
         this.brand = brand;

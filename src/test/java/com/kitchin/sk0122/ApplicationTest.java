@@ -14,7 +14,7 @@ public class ApplicationTest {
 
     @Test
     void testCheckout1() {
-        Object[] rental = Data.getData()[0];
+        Object[] rental = RentalData.getData()[0];
         Agreement agreement = checkout.checkout((String) rental[0], (int) rental[1], (int) rental[2], (LocalDate) rental[3]);
         Assertions.assertEquals(2, agreement.getChargeDays());
         Assertions.assertEquals(5.98, agreement.getPreDiscountCharge(), 0.01);
@@ -24,7 +24,7 @@ public class ApplicationTest {
 
     @Test
     void testCheckout2() {
-        Object[] rental = Data.getData()[1];
+        Object[] rental = RentalData.getData()[1];
         Agreement agreement = checkout.checkout((String) rental[0], (int) rental[1], (int) rental[2], (LocalDate) rental[3]);
         Assertions.assertEquals(1, agreement.getChargeDays()); // Adjusted expected charge days to 1
         Assertions.assertEquals(1.99, agreement.getPreDiscountCharge(), 0.01);
@@ -34,7 +34,7 @@ public class ApplicationTest {
 
     @Test
     void testCheckout3() {
-        Object[] rental = Data.getData()[2];
+        Object[] rental = RentalData.getData()[2];
         Agreement agreement = checkout.checkout((String) rental[0], (int) rental[1], (int) rental[2], (LocalDate) rental[3]);
         Assertions.assertEquals(3, agreement.getChargeDays());
         Assertions.assertEquals(4.47, agreement.getPreDiscountCharge(), 0.01);
@@ -44,7 +44,7 @@ public class ApplicationTest {
 
     @Test
     void testCheckout4() {
-        Object[] rental = Data.getData()[3];
+        Object[] rental = RentalData.getData()[3];
         Agreement agreement = checkout.checkout((String) rental[0], (int) rental[1], (int) rental[2], (LocalDate) rental[3]);
         Assertions.assertEquals(3, agreement.getChargeDays());
         Assertions.assertEquals(8.97, agreement.getPreDiscountCharge(), 0.01);
@@ -54,7 +54,7 @@ public class ApplicationTest {
 
     @Test
     void testCheckout5() {
-        Object[] rental = Data.getData()[4];
+        Object[] rental = RentalData.getData()[4];
         Agreement agreement = checkout.checkout((String) rental[0], (int) rental[1], (int) rental[2], (LocalDate) rental[3]);
         Assertions.assertEquals(5, agreement.getChargeDays());
         Assertions.assertEquals(14.95, agreement.getPreDiscountCharge(), 0.01);
@@ -64,7 +64,7 @@ public class ApplicationTest {
 
     @Test
     void testCheckout6() {
-        Object[] rental = Data.getData()[5];
+        Object[] rental = RentalData.getData()[5];
         Agreement agreement = checkout.checkout((String) rental[0], (int) rental[1], (int) rental[2], (LocalDate) rental[3]);
         Assertions.assertEquals(1, agreement.getChargeDays());
         Assertions.assertEquals(2.99, agreement.getPreDiscountCharge(), 0.01);
