@@ -29,7 +29,7 @@ public class ToolsData {
     /**
      * Retrieves the map of tools available for rental.
      *
-     * @return a map where the key is the tool code and the value is an {@code Object} representing the tool details.
+     * @return a map where the key is the tool code and the value is an object representing the tool details.
      */
     public static Map<String, Object> getTools() {
         return tools;
